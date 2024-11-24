@@ -9,75 +9,53 @@ public class Main
         memory = new ArrayList<String>();
     }
 
-    public class TypeNum
+    public void input(String in)
     {
-        private String type;
-        private int num;
-        public TypeNum(String type, int num)
-        {
-            this.type = type;
-            this.num = num;
-        }
-        public String getType()
-        {
-            return type;
-        }
-        public int getNum()
-        {
-            return num;
-        }
-    }
-
-    public TypeNum most()
-    {
-        int sCount = 0;
-        int rCount = 0;
-        int pCount = 0;
-        for(int i = 0; i < memory.size(); i++)
-        {
-            if(memory.get(i).equals("scissors"))
-            {
-                sCount++;
-            }
-            else if(memory.get(i).equals("rock"))
-            {
-                rCount++;
-            }
-            else if(memory.get(i).equals("paper"))
-            {
-                pCount++;
-            }
-        }
-
-        if(sCount > rCount && sCount > pCount)
-        {
-            return new TypeNum("scissors", sCount);
-        }
-        else if(rCount > sCount && rCount > pCount)
-        {
-            return new TypeNum("rock", rCount);
-        }
-        else
-        {
-            return new TypeNum("paper", pCount);
-        }
+        memory.add(in);
     }
 
     public String output()
     {
+        double sFrequency = frequency("scissors");
+        double rFrequency = frequency("rock");
+        double pFrequency = frequency("paper");
+
         String list[] = {"scissors", "rock", "paper"};
-        String play = list[((int)(Math.random() * 3))];
 
-        if(memory.size() == 0)
-            return play;
-
-        
-
+        double control = .499;
+        if(memory.size() < 3)
+        {
+            return list[((int)(Math.random() * 3))];
+        }
+        else if(sFrequency > control)
+        {
+            return "rock";
+        }
+        else if(rFrequency > control)
+        {
+            return "paper";
+        }
+        else if(pFrequency > control)
+        {
+            return "scissors";
+        }
+        else
+        {
+            return list[((int)(Math.random() * 3))];
+        }
         
     }
 
-    public void input(String opp)
+    public double frequency(String find)
     {
-        memory.add(opp);
+        double count = 0;
+        for(int i = 0; i < memory.size(); i++)
+        {
+            if(memory.get(i).equals(find))
+            {
+                count++;
+            }
+        }
+        return count / memory.size();
     }
 }
