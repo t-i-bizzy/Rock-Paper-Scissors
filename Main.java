@@ -22,22 +22,23 @@ public class Main
 
         String list[] = {"scissors", "rock", "paper"};
 
-        double control = .499;
+        System.out.println(pFrequency + ", " + sFrequency + ", " + rFrequency);
+
         if(memory.size() < 3)
         {
             return list[((int)(Math.random() * 3))];
         }
-        else if(sFrequency > control)
-        {
-            return "rock";
-        }
-        else if(rFrequency > control)
+        if(rFrequency == 1 || (sFrequency == 0 && rFrequency > 0 && pFrequency > 0))
         {
             return "paper";
         }
-        else if(pFrequency > control)
+        if(pFrequency == 1 || (rFrequency == 0 && sFrequency > 0 && pFrequency > 0))
         {
             return "scissors";
+        }
+        if(sFrequency == 1 || (pFrequency == 0 && rFrequency > 0 && rFrequency > 0))
+        {
+            return "rock";
         }
         else
         {

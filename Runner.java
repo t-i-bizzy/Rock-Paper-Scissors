@@ -11,14 +11,9 @@ public class Runner
         Scanner scan = new Scanner(System.in);
         String huh = "encore";
 
-        int totalPlays = 0;
-        int over = 0;
-        while(true)
+        while(huh.equals("encore"))
         {
-            int plays = 0;
-        while(plays < 4)
-        {
-            String list[] = {"scissors", "rock", "paper"};
+            String list[] = {"rock", "paper", "scissors"};
             String oppPlay = list[((int)(Math.random() * 3))];
             String aiPlay = ai.output();
             System.out.println("opp plays - " + oppPlay);
@@ -40,16 +35,6 @@ public class Runner
             ai.input(oppPlay);
             System.out.println("\n" + bot + " - " + opp);
             //scan.next();
-            plays++;
-            totalPlays++;
-            if(opp >= 2)
-                over++;
-            System.out.println((double)over / totalPlays);
-        }
-        bot = 0;
-        opp = 0;
-        plays = 0;
-        
         }
     }
 }
